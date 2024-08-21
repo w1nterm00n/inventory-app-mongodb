@@ -1,0 +1,250 @@
+body{
+    /* background-color:  rgb(209, 209, 209); */
+    color: rgb(0, 0, 0);
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+}
+
+.page{
+    display: flex;
+}
+
+.content{
+    margin: 0 auto;
+    text-align: center;
+}
+
+h1{
+    margin-bottom: 40px;
+}
+
+
+/* NAVBAR */
+nav{
+    display: flex;
+    gap: 30px;
+    margin-top: 100px;
+}
+nav > ul{
+    list-style-type: none;
+}
+nav > ul > li{
+    margin-bottom: 20px;
+}
+nav > ul > li > a{
+    text-decoration: none;
+    color: #000000;
+    font-size: 20px;
+}
+.decoration-stick-nav{
+    width: 3px;
+    background-color: #D9D9D9;
+    height: 280px;
+}
+/* NAVBAR */
+
+
+/* all albums */
+.allAlbumsTable{
+    width: 60vw;
+}
+
+.allAlbumsTable > thead::after {
+    content: "";
+    display: block;
+    height: 40px;
+}  
+/* all albums */
+.genres-list{
+    margin-top: 70px;
+}
+.genres-list > ul{
+    list-style-type: none;
+}
+.genres-list > ul > li{
+    margin-bottom: 20px;
+    display: flex;
+    width: 40vw;
+    justify-content: space-between;
+}
+
+.allAlbums_image{
+    width: 200px;
+    height: 200px;
+}
+/* all albums */
+
+/* album */
+.album-info{
+    width: 50vw;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 100px;
+}
+.album-info > .text-info > ul{
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-right: 300px;
+    margin-top: 70px;
+    width: 100%;
+}
+.album-info > .text-info > ul > li{
+    margin-bottom: 30px;
+}
+
+.btn{
+    background-color: #D9D9D9;
+    border: 1px solid black;
+    padding: 10px 30px;
+    border-radius: 5px;
+}
+.btn > a{
+    text-decoration: none;
+    font-size: 20px;
+    color: #000000;
+}
+.delete-btn{
+    font-size: 20px;
+    margin-top: 10px;
+}
+/* album */
+
+/* genre */
+.album > .content > .buttons{
+    margin-top: 60px;
+    display: flex;
+    margin-left: 70px;
+}
+/* genre */
+
+/* form */
+.addAlbum-form{
+    width: 20vw;
+}
+.addAlbum-form > .input{
+    display: flex;
+    justify-content: space-between;
+}
+
+.input-optional {
+    position: relative;
+    display: inline-block; /* Чтобы текст "optional" был точно под элементом */
+}
+
+.input-optional::after {
+    content: "optional"; /* Вставляем текст */
+    display: block;
+    font-size: 12px; /* Размер текста можно настроить */
+    color: rgb(60, 60, 60); /* Цвет текста */
+    margin-top: 5px; /* Отступ сверху, чтобы текст был чуть ниже input */
+    text-align: left; /* Выравнивание текста по левому краю */
+}
+
+/* form */
+
+
+
+/* media queries */
+
+
+/* navbar */
+@media (max-width: 800px) {
+    .page{
+        flex-direction: column;
+    }
+    .decoration-stick-nav{
+        display: none;
+    }
+    .page > nav {
+        margin-top: 30px;
+    }
+    .page > nav > ul > li{
+        margin-bottom: 5px;
+    }
+}
+/* all albums */
+@media (max-width: 1200px) {
+    .allAlbumsTable{
+        width: 70vw;
+    }
+}
+@media (max-width: 800px) {
+    .allAlbumsTable{
+        width: 90vw;
+    }
+}
+@media (max-width: 700px) {
+    .allAlbumsTable > tbody > tr > td > img{
+        display: none;
+     }
+}
+/* all genres */
+@media (max-width: 800px) {
+    .allGenres > .content > .genres-list{
+        width: 100vw;
+    }
+    .allGenres > .content > .genres-list > ul > li{
+        width: 70%;
+    }
+}
+
+
+/* add new album */
+@media (max-width: 1500px) {
+    .addAlbum-form{
+        width: 40vw;
+    }
+}
+@media (max-width: 800px) {
+    .addAlbum-form{
+        width: 70vw;
+    }
+}
+@media (max-width: 600px) {
+    .addAlbum-form{
+        width: 90vw;
+    }
+}
+
+/* album */
+@media (max-width: 1400px) {
+    .album > .content > .album-info{
+        width: 75vw;
+    }
+}
+
+@media (max-width: 1100px) {
+
+    .album > .content > .album-info > .album-cover > img {
+        width: 300px;
+    }
+    .album > .content > .album-info > .text-info > ul {
+        margin-right: 80px;
+    }
+    .change-btn {
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 800px) {
+
+    .album > .content > .album-info > .album-cover > img {
+        width: 250px;
+    }
+}
+@media (max-width: 700px) {
+
+    .album > .content > .album-info {
+        flex-direction: column-reverse;
+    }
+}
+
+/* genre */
+@media (max-width: 1000px) {
+
+    .allAlbumsTable{
+        margin-bottom: 50px;
+    }
+}

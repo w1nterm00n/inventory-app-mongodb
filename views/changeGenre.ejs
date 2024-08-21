@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="./../../style.css">
+    </head>
+<body>
+
+    <div class="addGenre page">
+        <%- include('navbar') %>
+
+        <div class="content">
+            <h1 style="text-align: center;">Change Genre</h1>
+
+            <h3 class="genreID"> genre id: <%= id %> </h3>
+
+            <form style="margin-top: 100px;" method="POST" action="/genre/update/<%= id %>">
+                <label style="margin-right: 20px;" for="genreName">Name of genre:</label>
+                <input style="margin-bottom: 30px;" type="text" id="genreName" name="genreName" value="<%= name %>" required><br>
+
+                <button type="submit" class="btn">Change</button>
+            </form> 
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="./style.css">
+    </head>
+<body>
+
+    <div class="allGenres page">
+        <%- include('navbar') %>
+
+        <div class="content">
+            <h1 style="text-align: center;">All Genres</h1>
+
+            <div class="genres-list">
+                <ul>
+                    <% /* 
+                        <% genres.forEach(function(genre) { %>
+                            <li>
+                                <a href="/genre/<%= genre.id_genre %>"><%= genre.name %></a> 
+                                <span>amount of albums: <%= genre.album_count %> </span>
+                            </li>
+                        <% }) %>
+                    */ %>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
+

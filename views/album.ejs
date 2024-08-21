@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="/../style.css">
+    </head>
+<body>
+
+    <div class="album page">
+        <%- include('navbar') %>
+
+        <div class="content">
+            <h1 style="text-align: center;">Album</h1>
+
+            <!-- <div class="album-info">
+                <div class="text-info">
+                    <h3 class="albumName"> <%= album.name %> </h3>
+                    <ul>
+                        <li>album: <span> <%= album.name %> </span></li>
+                        <li>artist: <span> <%= album.artist %> </span></li>
+                        <li>genre: <span>blah blah</span></li>
+                        <li style="margin-bottom: 60px;">price: <span> <%= album.price %> </span></li>
+            
+                        <li>year: <span> <%= album.year %> </span></li>
+                        <li>description: <span> <%= album.description %> </span></li>
+                    </ul>
+
+                    <form action="/album/update/<%= album.id_album %>?_method=GET" method="POST">
+                        <button type="submit" class="btn delete-btn change-btn">Change</button>
+                    </form>
+
+                    <form action="/album/<%= album.id_album %>?_method=DELETE" method="POST">
+                        <button type="submit" class="btn delete-btn change-btn">Delete</button>
+                    </form>
+                    
+
+                </div>
+                <div class="album-cover">
+                    <% if (album.img_url) { %>
+                        <img src="<%= album.img_url %>" alt="Album Cover">
+                    <% } else { %>
+                        <p>No Cover Available</p>
+                    <% } %>
+                </div>
+            </div> -->
+
+            <div class="album-info">
+                <div class="text-info">
+                    <h3 class="albumName"> Album name </h3>
+                    <ul>
+                        <li>album: <span> Album name  </span></li>
+                        <li>artist: <span> Album name </span></li>
+                        <li>genre: <span>blah blah</span></li>
+                        <li style="margin-bottom: 60px;">price: <span> price </span></li>
+            
+                        <li>year: <span>  year </span></li>
+                        <li>description: <span> desc </span></li>
+                    </ul>
+
+                    <form action="" method="POST">
+                        <button type="submit" class="btn delete-btn change-btn">Change</button>
+                    </form>
+
+                    <form action="" method="POST">
+                        <button type="submit" class="btn delete-btn change-btn">Delete</button>
+                    </form>
+                    
+
+                </div>
+                <div class="album-cover">
+                        <p>No Cover Available</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
