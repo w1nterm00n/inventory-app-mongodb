@@ -11,8 +11,8 @@
         <div class="content">
             <h1 style="text-align: center;">Genre</h1>
 
-            <!-- <% if (albums[0]) { %>
-                <h2 style="margin-bottom: 60px;"> <%= albums[0].genre_name %> </h2>
+            <% if (albums[0]) { %>
+                <h2 style="margin-bottom: 60px;"> <%= genreName %> </h2>
            <% } else { %>
                 <h2 style="margin-bottom: 60px;"> Seems like there's no albums </h2>
            <% } %>
@@ -26,9 +26,9 @@
                            <% } else { %>
                                 <td><p>No Cover Available</p></td>
                            <% } %>
-                          <td> <a href="/album/<%= album.id_album %>"> <%= album.name %> </a> </td>
+                          <td> <a href="/album/<%= album._id %>"> <%= album.name %> </a> </td>
                           <td> <%= album.artist %> </td>
-                          <td> <%= album.genre_name %> </td>
+                          <td> <%= genreName %>  </td>
                           <td> <%= album.price %> </td>
                         </tr>
                     <% }) %>
@@ -43,7 +43,7 @@
                 <form action="/genre/<%= id %>?_method=DELETE" method="POST">
                     <button type="submit" class="btn delete-btn change-btn">Delete</button>
                 </form>
-            </div> -->
+            </div>
             
         </div>
     </div>

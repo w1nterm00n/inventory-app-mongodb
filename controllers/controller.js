@@ -1,4 +1,9 @@
-const { getAllAlbums, getAllGenres } = require("../db/mongoQueries.js");
+const {
+	getAllAlbums,
+	getAllGenres,
+	getGenreById,
+	getGenreNameById,
+} = require("../db/mongoQueries.js");
 
 exports.homepageGet = (req, res) => {
 	res.render("homepage");
@@ -11,12 +16,16 @@ exports.allAlbumsGet = async (req, res) => {
 
 exports.allGenresGet = async (req, res) => {
 	const genres = await getAllGenres();
-	console.log(genres);
 	res.render("allGenres", { genres });
 };
 
-exports.genreGet = (req, res) => {
-	res.render("genre");
+exports.findGenreById = async (id, res) => {
+	const albums = await getGenreById(id);
+	const genreName = await getGenreNameById(id);
+	if (!albums) {
+		return res.status(404).send("Albums not found");
+	}
+	res.render("genre", { albums: albums, id: id, genreName: genreName.name });
 };
 
 // exports.addAlbumGet = async (req, res) => {
@@ -66,16 +75,6 @@ exports.genreGet = (req, res) => {
 // 		return res.status(404).send("Album not found");
 // 	}
 // 	res.render("album", { album: album });
-// };
-
-// exports.findGenreById = async (id, res) => {
-// 	const albums = await getGenreById(id);
-// 	console.log(albums);
-// 	if (!albums) {
-// 		return res.status(404).send("Albums not found");
-// 	}
-// 	console.log("id of this genre: ", id);
-// 	res.render("genre", { albums: albums, id: id });
 // };
 
 // exports.updateGenreGetForm = async (id, res) => {

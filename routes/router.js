@@ -2,11 +2,17 @@ const { Router } = require("express");
 const controller = require("../controllers/controller");
 const updateController = require("../controllers/updateController");
 const router = Router();
+const { ObjectId } = require("mongodb");
 
 router.get("/", controller.homepageGet);
 
 router.get("/allAlbums", controller.allAlbumsGet);
 router.get("/allGenres", controller.allGenresGet);
+
+router.get("/genre/:id", (req, res) => {
+	const id = new ObjectId(req.params.id);
+	controller.findGenreById(id, res);
+});
 
 // router.get("/addAlbum", (req, res) => {
 // 	controller.addAlbumGet(req, res);
@@ -22,11 +28,6 @@ router.get("/allGenres", controller.allGenresGet);
 // router.post("/addGenre", (req, res) => {
 // 	controller.addGenrePost(req, res);
 // 	res.redirect("/");
-// });
-
-// router.get("/genre/:id", (req, res) => {
-// 	const id = parseInt(req.params.id, 10);
-// 	controller.findGenreById(id, res);
 // });
 
 // router.get("/album/:id", (req, res) => {

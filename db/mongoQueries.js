@@ -57,7 +57,32 @@ const getAllGenres = async () => {
 	}
 };
 
+const getGenreById = async (id) => {
+	try {
+		await connectToDatabase();
+		let result = await albumsCollection.find({ genre_id: id }).toArray();
+		return result;
+	} catch (err) {
+		console.error(`Error getting genre by ID: ${err}`);
+	} finally {
+		await client.close();
+	}
+};
+const getGenreNameById = async (id) => {
+	try {
+		await connectToDatabase();
+		let result = await genresCollection.findOne({ _id: id });
+		return result;
+	} catch (err) {
+		console.error(`Error getting genre by ID: ${err}`);
+	} finally {
+		await client.close();
+	}
+};
+
 module.exports = {
 	getAllAlbums,
 	getAllGenres,
+	getGenreById,
+	getGenreNameById,
 };
