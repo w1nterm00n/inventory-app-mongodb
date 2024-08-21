@@ -23,17 +23,15 @@
                 </thead>
                 
                 <tbody>
-                    <%  
-                    albums.forEach(function(album) { %>
-                    <tr>
-                      <td> <img class="allAlbums_image" src="<%= album.img_url %>" alt="Album Cover"> </td>
-                      <td> <a href="/album/<%= album.id_album %>"> <%= album.name %> </a> </td>
-                      <td> <%= album.artist %> </td>
-                      <td> <%= album.genre_name %> </td>
-                      <td> <%= album.price %> </td>
-                    </tr>
-                    <% }) 
-                     %>
+                    <% albums.forEach(function(album) { %>
+                            <tr>
+                            <td> <img class="allAlbums_image" src="<%= album.img_url %>" alt="Album Cover"> </td>
+                            <td> <a href="/album/<%= album.id_album %>"> <%= album.name %> </a> </td>
+                            <td> <%= album.artist %> </td>
+                            <td> <%= album.genre_name %> </td>
+                            <td> <%= album.price %> </td>
+                            </tr>
+                    <% }) %>
                 </tbody>
                 
             </table>

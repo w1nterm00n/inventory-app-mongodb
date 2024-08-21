@@ -1,4 +1,4 @@
-const { getAllAlbums } = require("../db/mongoQueries.js");
+const { getAllAlbums, getAllGenres } = require("../db/mongoQueries.js");
 
 exports.homepageGet = (req, res) => {
 	res.render("homepage");
@@ -7,15 +7,14 @@ exports.homepageGet = (req, res) => {
 exports.allAlbumsGet = async (req, res) => {
 	const albums = await getAllAlbums();
 	res.render("allAlbums", { albums });
-	console.log(albums);
-	//res.render("allAlbums");
 };
 
 exports.allGenresGet = async (req, res) => {
-	//const genres = await getAllGenres();
-	// res.render("allGenres", { genres });
-	res.render("allGenres");
+	const genres = await getAllGenres();
+	console.log(genres);
+	res.render("allGenres", { genres });
 };
+
 exports.genreGet = (req, res) => {
 	res.render("genre");
 };

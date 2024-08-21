@@ -27,6 +27,37 @@ const getAllAlbums = async () => {
 	}
 };
 
+const getAllGenres = async () => {
+	try {
+		await connectToDatabase();
+		let result = await genresCollection
+			.aggregate([
+				{
+					$lookup: {
+						from: "albums",
+						localField: "_id",
+						foreignField: "genre_id",
+						as: "albums",
+					},
+				},
+				{
+					$project: {
+						_id: 1,
+						name: 1,
+						albumCount: { $size: "$albums" },
+					},
+				},
+			])
+			.toArray();
+		return result;
+	} catch (err) {
+		console.error(`Error getting all genres: ${err}`);
+	} finally {
+		await client.close();
+	}
+};
+
 module.exports = {
 	getAllAlbums,
+	getAllGenres,
 };

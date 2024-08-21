@@ -13,14 +13,12 @@
 
             <div class="genres-list">
                 <ul>
-                    <% /* 
-                        <% genres.forEach(function(genre) { %>
+                    <% genres.forEach(function(genre) { %>
                             <li>
-                                <a href="/genre/<%= genre.id_genre %>"><%= genre.name %></a> 
-                                <span>amount of albums: <%= genre.album_count %> </span>
+                                <a href="/genre/<%= genre._id %>"><%= genre.name %></a> 
+                                <span>amount of albums: <%= genre.albumCount %> </span>
                             </li>
-                        <% }) %>
-                    */ %>
+                     <% }) %>
                 </ul>
             </div>
         </div>
