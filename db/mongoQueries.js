@@ -14,7 +14,7 @@ const dbname = "musicDB";
 const albumsCollection = client.db(dbname).collection("albums");
 const genresCollection = client.db(dbname).collection("genres");
 
-//queries
+//GET queries
 const getAllAlbums = async () => {
 	try {
 		await connectToDatabase();
@@ -68,6 +68,7 @@ const getGenreById = async (id) => {
 		await client.close();
 	}
 };
+
 const getGenreNameById = async (id) => {
 	try {
 		await connectToDatabase();
@@ -80,9 +81,23 @@ const getGenreNameById = async (id) => {
 	}
 };
 
+const getAlbumById = async (id) => {
+	try {
+		await connectToDatabase();
+		let result = await albumsCollection.findOne({ _id: id });
+		return result;
+	} catch (err) {
+		console.error(`Error getting album by ID: ${err}`);
+	} finally {
+		await client.close();
+	}
+};
+//GET queries
+
 module.exports = {
 	getAllAlbums,
 	getAllGenres,
 	getGenreById,
 	getGenreNameById,
+	getAlbumById,
 };

@@ -14,6 +14,11 @@ router.get("/genre/:id", (req, res) => {
 	controller.findGenreById(id, res);
 });
 
+router.get("/album/:id", (req, res) => {
+	const id = new ObjectId(req.params.id);
+	controller.findAlbumById(id, res);
+});
+
 // router.get("/addAlbum", (req, res) => {
 // 	controller.addAlbumGet(req, res);
 // });
@@ -28,11 +33,6 @@ router.get("/genre/:id", (req, res) => {
 // router.post("/addGenre", (req, res) => {
 // 	controller.addGenrePost(req, res);
 // 	res.redirect("/");
-// });
-
-// router.get("/album/:id", (req, res) => {
-// 	const id = parseInt(req.params.id, 10);
-// 	controller.findAlbumById(id, res);
 // });
 
 // router.delete("/album/:id", (req, res) => {

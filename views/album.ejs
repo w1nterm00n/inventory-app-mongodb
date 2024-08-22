@@ -11,16 +11,17 @@
         <div class="content">
             <h1 style="text-align: center;">Album</h1>
 
-            <!-- <div class="album-info">
+            <div class="album-info">
                 <div class="text-info">
                     <h3 class="albumName"> <%= album.name %> </h3>
                     <ul>
                         <li>album: <span> <%= album.name %> </span></li>
                         <li>artist: <span> <%= album.artist %> </span></li>
-                        <li>genre: <span>blah blah</span></li>
+                        <li>genre: <span> <%= genreName %> </span></li>
                         <li style="margin-bottom: 60px;">price: <span> <%= album.price %> </span></li>
             
                         <li>year: <span> <%= album.year %> </span></li>
+                    
                         <li>description: <span> <%= album.description %> </span></li>
                     </ul>
 
@@ -41,38 +42,10 @@
                         <p>No Cover Available</p>
                     <% } %>
                 </div>
-            </div> -->
-
-            <div class="album-info">
-                <div class="text-info">
-                    <h3 class="albumName"> Album name </h3>
-                    <ul>
-                        <li>album: <span> Album name  </span></li>
-                        <li>artist: <span> Album name </span></li>
-                        <li>genre: <span>blah blah</span></li>
-                        <li style="margin-bottom: 60px;">price: <span> price </span></li>
-            
-                        <li>year: <span>  year </span></li>
-                        <li>description: <span> desc </span></li>
-                    </ul>
-
-                    <form action="" method="POST">
-                        <button type="submit" class="btn delete-btn change-btn">Change</button>
-                    </form>
-
-                    <form action="" method="POST">
-                        <button type="submit" class="btn delete-btn change-btn">Delete</button>
-                    </form>
-                    
-
-                </div>
-                <div class="album-cover">
-                        <p>No Cover Available</p>
-                </div>
             </div>
 
         </div>
     </div>
 
 </body>
-</html>
+</html>  
