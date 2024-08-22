@@ -94,10 +94,22 @@ const getAlbumById = async (id) => {
 };
 //GET queries
 
+const addGenre = async (name) => {
+	try {
+		await connectToDatabase();
+		await genresCollection.insertOne({ name: name });
+	} catch (err) {
+		console.error(`Error adding genre: ${err}`);
+	} finally {
+		await client.close();
+	}
+};
+
 module.exports = {
 	getAllAlbums,
 	getAllGenres,
 	getGenreById,
 	getGenreNameById,
 	getAlbumById,
+	addGenre,
 };

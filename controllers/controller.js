@@ -4,6 +4,7 @@ const {
 	getGenreById,
 	getGenreNameById,
 	getAlbumById,
+	addGenre,
 } = require("../db/mongoQueries.js");
 
 exports.homepageGet = (req, res) => {
@@ -38,6 +39,14 @@ exports.findAlbumById = async (id, res) => {
 	res.render("album", { album: album, genreName: genreName.name });
 };
 
+exports.addGenreGet = (req, res) => {
+	res.render("addGenre");
+};
+exports.addGenrePost = async (req, res) => {
+	const name = req.body.genreName;
+	await addGenre(name);
+};
+
 // exports.addAlbumGet = async (req, res) => {
 // 	const genres = await getGenresList();
 // 	res.render("addAlbum", { genres: genres });
@@ -68,15 +77,6 @@ exports.findAlbumById = async (id, res) => {
 // 		albumImgUrl,
 // 		albumDesc
 // 	);
-// };
-
-// exports.addGenreGet = (req, res) => {
-// 	res.render("addGenre");
-// };
-
-// exports.addGenrePost = async (req, res) => {
-// 	const name = req.body.genreName;
-// 	await addGenre(name);
 // };
 
 // exports.updateGenreGetForm = async (id, res) => {
