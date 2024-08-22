@@ -25,14 +25,13 @@ router.post("/addGenre", (req, res) => {
 	res.redirect("/");
 });
 
-// router.get("/addAlbum", (req, res) => {
-// 	controller.addAlbumGet(req, res);
-// });
-
-// router.post("/addAlbum", (req, res) => {
-// 	controller.addAlbumPost(req, res);
-// 	res.redirect("/");
-// });
+router.get("/addAlbum", (req, res) => {
+	controller.addAlbumGet(req, res);
+});
+router.post("/addAlbum", (req, res) => {
+	controller.addAlbumPost(req, res);
+	res.redirect("/");
+});
 
 // router.delete("/album/:id", (req, res) => {
 // 	const id = parseInt(req.params.id, 10);

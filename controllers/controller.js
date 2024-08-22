@@ -1,11 +1,14 @@
 const {
 	getAllAlbums,
-	getAllGenres,
+	getAllGenresAlbums,
 	getGenreById,
+	getAllGenres,
 	getGenreNameById,
 	getAlbumById,
 	addGenre,
+	addAlbum,
 } = require("../db/mongoQueries.js");
+const { ObjectId } = require("mongodb");
 
 exports.homepageGet = (req, res) => {
 	res.render("homepage");
@@ -17,7 +20,7 @@ exports.allAlbumsGet = async (req, res) => {
 };
 
 exports.allGenresGet = async (req, res) => {
-	const genres = await getAllGenres();
+	const genres = await getAllGenresAlbums();
 	res.render("allGenres", { genres });
 };
 
@@ -47,10 +50,34 @@ exports.addGenrePost = async (req, res) => {
 	await addGenre(name);
 };
 
-// exports.addAlbumGet = async (req, res) => {
-// 	const genres = await getGenresList();
-// 	res.render("addAlbum", { genres: genres });
-// };
+exports.addAlbumGet = async (req, res) => {
+	const genres = await getAllGenres();
+	res.render("addAlbum", { genres: genres });
+};
+
+exports.addAlbumPost = async (req, res) => {
+	const albumName = req.body.albumName;
+	const artistName = req.body.artistName;
+	let albumGenre;
+	try {
+		albumGenre = new ObjectId(req.body.albumGenre);
+	} catch (error) {
+		return res.status(400).send("Invalid genre ID format");
+	}
+	const albumYear = req.body.albumYear;
+	const albumPrice = req.body.albumPrice;
+	const albumImgUrl = req.body.albumImgUrl;
+	const albumDesc = req.body.albumDesc;
+	await addAlbum(
+		albumName,
+		artistName,
+		albumGenre,
+		albumYear,
+		albumPrice,
+		albumImgUrl,
+		albumDesc
+	);
+};
 
 // exports.deleteAlbumById = async (id, res) => {
 // 	await deleteAlbum(id);
@@ -58,25 +85,6 @@ exports.addGenrePost = async (req, res) => {
 
 // exports.deleteGenreById = async (id, res) => {
 // 	await deleteGenre(id);
-// };
-
-// exports.addAlbumPost = async (req, res) => {
-// 	const albumName = req.body.albumName;
-// 	const artistName = req.body.artistName;
-// 	const albumGenre = req.body.albumGenre;
-// 	const albumYear = req.body.albumYear;
-// 	const albumPrice = req.body.albumPrice;
-// 	const albumImgUrl = req.body.albumImgUrl;
-// 	const albumDesc = req.body.albumDesc;
-// 	await addAlbum(
-// 		albumName,
-// 		artistName,
-// 		albumGenre,
-// 		albumYear,
-// 		albumPrice,
-// 		albumImgUrl,
-// 		albumDesc
-// 	);
 // };
 
 // exports.updateGenreGetForm = async (id, res) => {

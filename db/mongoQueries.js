@@ -21,13 +21,13 @@ const getAllAlbums = async () => {
 		let result = await albumsCollection.find().toArray();
 		return result;
 	} catch (err) {
-		console.error(`Error getting all albumst: ${err}`);
+		console.error(`Error getting all albums: ${err}`);
 	} finally {
 		await client.close();
 	}
 };
 
-const getAllGenres = async () => {
+const getAllGenresAlbums = async () => {
 	try {
 		await connectToDatabase();
 		let result = await genresCollection
@@ -49,6 +49,18 @@ const getAllGenres = async () => {
 				},
 			])
 			.toArray();
+		return result;
+	} catch (err) {
+		console.error(`Error getting all genres: ${err}`);
+	} finally {
+		await client.close();
+	}
+};
+
+const getAllGenres = async () => {
+	try {
+		await connectToDatabase();
+		let result = await genresCollection.find().toArray();
 		return result;
 	} catch (err) {
 		console.error(`Error getting all genres: ${err}`);
@@ -104,12 +116,40 @@ const addGenre = async (name) => {
 		await client.close();
 	}
 };
+const addAlbum = async (
+	albumName,
+	artistName,
+	albumGenre,
+	albumYear,
+	albumPrice,
+	albumImgUrl,
+	albumDesc
+) => {
+	try {
+		await connectToDatabase();
+		await albumsCollection.insertOne({
+			name: albumName,
+			artist: artistName,
+			genre_id: albumGenre,
+			year: albumYear,
+			price: albumPrice,
+			img_url: albumImgUrl,
+			description: albumDesc,
+		});
+	} catch (err) {
+		console.error(`Error adding album: ${err}`);
+	} finally {
+		await client.close();
+	}
+};
 
 module.exports = {
 	getAllAlbums,
-	getAllGenres,
+	getAllGenresAlbums,
 	getGenreById,
 	getGenreNameById,
 	getAlbumById,
 	addGenre,
+	getAllGenres,
+	addAlbum,
 };
