@@ -7,6 +7,7 @@ const {
 	getAlbumById,
 	addGenre,
 	addAlbum,
+	updateGenreById,
 } = require("../db/mongoQueries.js");
 const { ObjectId } = require("mongodb");
 
@@ -87,13 +88,22 @@ exports.addAlbumPost = async (req, res) => {
 // 	await deleteGenre(id);
 // };
 
-// exports.updateGenreGetForm = async (id, res) => {
-// 	const genre = await getGenre(id);
-// 	res.render("changeGenre", { id: id, name: genre[0].name });
-// };
+//UPDATE
+exports.updateGenreGetForm = async (id, res) => {
+	const genre = await getGenreNameById(id);
+	res.render("changeGenre", { id: id, name: genre.name });
+};
+
+exports.updateGenre = async (id, req, res) => {
+	const { genreName } = req.body;
+	let updates = { name: genreName };
+	await updateGenreById(id, updates);
+};
 
 // exports.updateAlbumGetForm = async (id, res) => {
 // 	const genres = await getGenresList();
 // 	const album = await getAlbumById(id);
 // 	res.render("changeAlbum", { genres: genres, album: album });
 // };
+
+//UPDATE

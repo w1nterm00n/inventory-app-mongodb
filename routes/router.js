@@ -47,15 +47,15 @@ router.post("/addAlbum", (req, res) => {
 
 //Update genre
 
-// router.get("/genre/update/:id", (req, res) => {
-// 	const id = parseInt(req.params.id, 10);
-// 	controller.updateGenreGetForm(id, res);
-// });
-// router.post("/genre/update/:id", (req, res) => {
-// 	const id = parseInt(req.params.id, 10);
-// 	updateController.updateGenre(id, req, res);
-// 	res.redirect("/");
-// });
+router.get("/genre/update/:id", (req, res) => {
+	const id = new ObjectId(req.params.id);
+	controller.updateGenreGetForm(id, res);
+});
+router.post("/genre/update/:id", (req, res) => {
+	const id = new ObjectId(req.params.id);
+	controller.updateGenre(id, req, res);
+	res.redirect("/");
+});
 
 //Update genre
 
