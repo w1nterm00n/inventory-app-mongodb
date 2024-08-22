@@ -33,18 +33,6 @@ router.post("/addAlbum", (req, res) => {
 	res.redirect("/");
 });
 
-// router.delete("/album/:id", (req, res) => {
-// 	const id = parseInt(req.params.id, 10);
-// 	controller.deleteAlbumById(id, res);
-// 	res.redirect("/");
-// });
-
-// router.delete("/genre/:id", (req, res) => {
-// 	const id = parseInt(req.params.id, 10);
-// 	controller.deleteGenreById(id, res);
-// 	res.redirect("/");
-// });
-
 //Update genre
 
 router.get("/genre/update/:id", (req, res) => {
@@ -61,16 +49,31 @@ router.post("/genre/update/:id", (req, res) => {
 
 //Update album
 
-// router.get("/album/update/:id", (req, res) => {
-// 	const id = parseInt(req.params.id, 10);
-// 	controller.updateAlbumGetForm(id, res);
-// });
-// router.post("/album/update/:id", (req, res) => {
-// 	const id = parseInt(req.params.id, 10);
-// 	updateController.updateAlbum(id, req, res);
-// 	res.redirect("/");
-// });
+router.get("/album/update/:id", (req, res) => {
+	const id = new ObjectId(req.params.id);
+	controller.updateAlbumGetForm(id, res);
+});
+router.post("/album/update/:id", (req, res) => {
+	const id = new ObjectId(req.params.id);
+	controller.updateAlbum(id, req, res);
+	res.redirect("/");
+});
 
 //Update album
+
+//deleting
+router.delete("/album/:id", (req, res) => {
+	const id = new ObjectId(req.params.id);
+	controller.deleteAlbumById(id, res);
+	res.redirect("/");
+});
+
+router.delete("/genre/:id", (req, res) => {
+	const id = new ObjectId(req.params.id);
+	controller.deleteGenreById(id, res);
+	res.redirect("/");
+});
+
+//deleting
 
 module.exports = router;

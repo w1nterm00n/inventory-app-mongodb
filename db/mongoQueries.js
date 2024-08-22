@@ -1,6 +1,6 @@
 const { MongoClient } = require("mongodb");
 const uri = require("../atlas_uri");
-
+const { ObjectId } = require("mongodb");
 const client = new MongoClient(uri);
 const connectToDatabase = async () => {
 	try {
@@ -105,6 +105,7 @@ const getAlbumById = async (id) => {
 };
 //GET queries
 
+//INSERT queries
 const addGenre = async (name) => {
 	try {
 		await connectToDatabase();
@@ -141,9 +142,9 @@ const addAlbum = async (
 		await client.close();
 	}
 };
+//INSERT queries
 
 //UPDATE queries
-
 async function updateGenreById(id_genre, updates) {
 	try {
 		await connectToDatabase();
@@ -162,6 +163,69 @@ async function updateGenreById(id_genre, updates) {
 	}
 }
 
+async function updateAlbumById(id_album, updates) {
+	try {
+		await connectToDatabase();
+		for (const [key, value] of Object.entries(updates)) {
+			await albumsCollection.updateOne(
+				{ _id: id_album },
+				{ $set: { [key]: value } }
+			);
+		}
+		return "Update completed";
+	} catch (err) {
+		console.error(`Error updating field: ${err}`);
+		throw err;
+	} finally {
+		await client.close();
+	}
+}
+
+async function setGenreUnknown(id_genre) {
+	try {
+		await connectToDatabase();
+
+		await albumsCollection.updateMany(
+			{ genre_id: id_genre },
+			{ $set: { genre_id: new ObjectId("66c79485433d349f6fa93736") } }
+		);
+	} catch (err) {
+		console.error(`Error updating album: ${err}`);
+		throw err;
+	}
+}
+//UPDATE queries
+
+//DELETE queries
+const deleteAlbum = async (id) => {
+	try {
+		await connectToDatabase();
+		await albumsCollection.deleteOne({ _id: id });
+	} catch (err) {
+		console.error(`Error deleting album: ${err}`);
+	} finally {
+		await client.close();
+	}
+};
+
+const deleteGenre = async (id, res) => {
+	try {
+		await connectToDatabase();
+		let genre = await getGenreNameById(id);
+		if (genre.name == "Genre Unknown") {
+			console.error("You can't delete 'Genre Unknown' ");
+		} else {
+			await setGenreUnknown(id);
+			await genresCollection.deleteOne({ _id: id });
+		}
+	} catch (err) {
+		console.error(`Error deleting album: ${err}`);
+	} finally {
+		await client.close();
+	}
+};
+//DELETE queries
+
 module.exports = {
 	getAllAlbums,
 	getAllGenresAlbums,
@@ -172,4 +236,7 @@ module.exports = {
 	getAllGenres,
 	addAlbum,
 	updateGenreById,
+	updateAlbumById,
+	deleteAlbum,
+	deleteGenre,
 };

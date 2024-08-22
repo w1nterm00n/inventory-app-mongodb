@@ -25,11 +25,11 @@
                         <li>description: <span> <%= album.description %> </span></li>
                     </ul>
 
-                    <form action="/album/update/<%= album.id_album %>?_method=GET" method="POST">
+                    <form action="/album/update/<%= album._id %>?_method=GET" method="POST">
                         <button type="submit" class="btn delete-btn change-btn">Change</button>
                     </form>
 
-                    <form action="/album/<%= album.id_album %>?_method=DELETE" method="POST">
+                    <form action="/album/<%= album._id %>?_method=DELETE" method="POST">
                         <button type="submit" class="btn delete-btn change-btn">Delete</button>
                     </form>
                     

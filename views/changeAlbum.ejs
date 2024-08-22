@@ -11,7 +11,7 @@
         <div class="content">
             <h1 style="text-align: center;">Change Album</h1>
 
-            <form class="addAlbum-form" style="margin-top: 100px;" method="POST" action="/album/update/<%= album.id_album %>">
+            <form class="addAlbum-form" style="margin-top: 100px;" method="POST" action="/album/update/<%= album._id %>">
                 <div class="input">
                     <label for="albumName">Name:</label>
                     <input style="margin-bottom: 30px;" type="text" id="albumName" name="albumName" value="<%= album.name %>" required>
@@ -26,7 +26,7 @@
                     <label for="albumGenre">Genre:</label>
                     <select id="albumGenre" name="albumGenre" style=" width: 180px; margin-bottom: 30px;">
                         <% genres.forEach(function(genre) { %>
-                            <option value= <%= genre.id_genre %> > <%= genre.name %> </option>
+                            <option value="<%= genre._id %>"> <%= genre.name %> </option>
                         <% }) %>
                     </select>
                 </div>

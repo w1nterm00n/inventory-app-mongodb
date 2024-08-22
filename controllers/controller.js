@@ -8,6 +8,9 @@ const {
 	addGenre,
 	addAlbum,
 	updateGenreById,
+	updateAlbumById,
+	deleteAlbum,
+	deleteGenre,
 } = require("../db/mongoQueries.js");
 const { ObjectId } = require("mongodb");
 
@@ -80,14 +83,6 @@ exports.addAlbumPost = async (req, res) => {
 	);
 };
 
-// exports.deleteAlbumById = async (id, res) => {
-// 	await deleteAlbum(id);
-// };
-
-// exports.deleteGenreById = async (id, res) => {
-// 	await deleteGenre(id);
-// };
-
 //UPDATE
 exports.updateGenreGetForm = async (id, res) => {
 	const genre = await getGenreNameById(id);
@@ -100,10 +95,42 @@ exports.updateGenre = async (id, req, res) => {
 	await updateGenreById(id, updates);
 };
 
-// exports.updateAlbumGetForm = async (id, res) => {
-// 	const genres = await getGenresList();
-// 	const album = await getAlbumById(id);
-// 	res.render("changeAlbum", { genres: genres, album: album });
-// };
+exports.updateAlbumGetForm = async (id, res) => {
+	const genres = await getAllGenres();
+	const album = await getAlbumById(id);
+	res.render("changeAlbum", { genres: genres, album: album });
+};
 
+exports.updateAlbum = async (id, req, res) => {
+	let { albumName } = req.body;
+	let { artistName } = req.body;
+	let albumGenre = new ObjectId(req.body.albumGenre);
+	let { albumYear } = req.body;
+	let { albumPrice } = req.body;
+	let { albumImgUrl } = req.body;
+	let { albumDesc } = req.body;
+
+	let updates = {
+		name: albumName,
+		artist: artistName,
+		genre_id: albumGenre,
+		year: albumYear,
+		price: albumPrice,
+		img_url: albumImgUrl,
+		description: albumDesc,
+	};
+	console.log("UPDATES: ", updates);
+	await updateAlbumById(id, updates);
+};
 //UPDATE
+
+//DELETE
+exports.deleteAlbumById = async (id, res) => {
+	await deleteAlbum(id);
+};
+
+exports.deleteGenreById = async (id, res) => {
+	await deleteGenre(id);
+};
+
+//DELETE
